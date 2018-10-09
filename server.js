@@ -9,7 +9,8 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-const db = knex({
+//	Local Postgres database location
+/*const db = knex({
   client: 'pg',
   connection: {
     host : '127.0.0.1',
@@ -17,6 +18,15 @@ const db = knex({
     password : '',
     database : 'smart-brain'
   }
+});*/
+
+//	Heroku Postgres database location
+const db = knex({
+	client: 'pg',
+	connection: {
+		connectionString: process.env.DATABASE_URL,
+		ssl: true
+	}
 });
 
 const app = express();
